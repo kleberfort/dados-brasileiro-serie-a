@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.dadosdosjogosbrasileiroseriea.databinding.ActivityMainBinding;
+import com.example.dadosdosjogosbrasileiroseriea.fragments.BrasileiroA2022Fragment;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
+import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,9 +22,20 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot(); //referência direta para a visualização raiz
         setContentView(view);
 
-        binding.tvNome.setText("kleber ferreira da silva");
 
-        binding.tvNome.setText("12");
+
+        //Configurar adapter para abas
+        FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
+                getSupportFragmentManager(),
+                FragmentPagerItems.with(this)
+                        .add("Brasileiro A - 2022", BrasileiroA2022Fragment.class)
+                .create()
+
+        );
+        //viewPager é area onde será carregado o conteúdo
+        //viewPagerTab é onde teremos as abas
+        binding.viewPager.setAdapter(adapter);
+        binding.viewPagerTab.setViewPager(binding.viewPager);
 
 
     }
